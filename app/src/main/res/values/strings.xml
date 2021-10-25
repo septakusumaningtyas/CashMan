@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CashMan</string>
+    <string name="appName">CASHMAN</string>
+    <string name="sloganApp">Your personal cash manager</string>
+    <string name="rangkuman">RANGKUMAN BULAN INI</string>
+    <string name="setting"><u>Ganti Password</u></string>
+</resources>

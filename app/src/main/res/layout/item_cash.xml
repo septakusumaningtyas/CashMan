@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/background_card_round_10">
+
+    <LinearLayout
+        android:layout_width="290dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nominal"
+            android:layout_marginTop="15dp"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:text="[ + ] Rp. 3.250.000"
+            android:fontFamily="@font/glacialindifference_bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/keterangan"
+            android:layout_marginTop="6dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:text="Gaji bulan Januari"
+            android:fontFamily="@font/glacialindifference_regular"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tanggal"
+            android:layout_marginTop="6dp"
+            android:textSize="13sp"
+            android:textColor="#707070"
+            android:text="10-10-2021"
+            android:fontFamily="@font/glacialindifference_regular"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="30dp"
+        >
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/logo"
+            android:layout_marginBottom="25dp"
+            app:srcCompat="@drawable/pem_arrow_1"
+            />
+    </LinearLayout>
+</LinearLayout>
