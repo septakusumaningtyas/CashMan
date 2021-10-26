@@ -44,7 +44,7 @@
             android:fontFamily="@font/glacialindifference_regular"
             />
     </LinearLayout>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -54,9 +54,16 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:id="@+id/logo"
+            android:id="@+id/arrowPem"
             android:layout_marginBottom="25dp"
             app:srcCompat="@drawable/pem_arrow_1"
             />
-    </LinearLayout>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/arrowPeng"
+            android:layout_marginBottom="25dp"
+            app:srcCompat="@drawable/peng_arrow"
+            />
+    </RelativeLayout>
 </LinearLayout>

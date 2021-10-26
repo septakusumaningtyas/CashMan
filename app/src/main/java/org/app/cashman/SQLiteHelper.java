@@ -1,24 +1,17 @@
 package org.app.cashman;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
-public class SQLiteHelper extends SQLiteOpenHelper {
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
-    public static final String DBNAME = "cashman.db";
-    public SQLiteHelper(Context context)
-    {
-        super(context, "cashman.db", null, 1);
+public class SQLiteHelper extends SQLiteAssetHelper {
+
+    public static final String DATABASE_NAME = "cashman.db"; //database name
+    public static final int DATABASE_VERSION = 3;
+    public static final String DATABASE_LOCATION = "/data/data/" + G.context.getPackageName() + "/databases";
+
+    public SQLiteHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE user(username TEXT primary key, password TEXT)");
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS user");
-    }
 }

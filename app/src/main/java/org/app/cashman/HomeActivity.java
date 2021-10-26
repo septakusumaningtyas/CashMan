@@ -3,16 +3,19 @@ package org.app.cashman;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
 
     ImageButton ImgButtonPem, ImgButtonPeng, ImgButtonDetail, ImgButtonSetting;
+    TextView textPemasukan, textPengeluaran;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,9 @@ public class HomeActivity extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.cream));
         }
+
+        textPemasukan = findViewById(R.id.textPemasukan);
+        textPengeluaran = findViewById(R.id.textPengeluaran);
 
         ImgButtonPem = findViewById(R.id.imageBtnPem);
         ImgButtonPem.setOnClickListener(new View.OnClickListener() {
@@ -61,5 +67,51 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void getJmlhPemasukan() {
+        SQLiteAccess sqLiteAccess = SQLiteAccess.getInstance(HomeActivity.this);
+        sqLiteAccess.open();
+
+        Cursor data = sqLiteAccess.Sum("jumlah", "cash", "arrow = 'pem'");
+
+        if(data.getCount() == 0){
+            textPemasukan.setText("Rp. 0");
+        } else {
+            while(data.moveToNext()){
+                if(data.getString(0) != null) {
+                    textPemasukan.setText("Rp. " + data.getString(0));
+                } else {
+                    textPemasukan.setText("Rp. 0");
+                }
+            }
+        }
+    }
+
+    private void getJmlhPengeluaran() {
+        SQLiteAccess sqLiteAccess = SQLiteAccess.getInstance(HomeActivity.this);
+        sqLiteAccess.open();
+
+        Cursor data = sqLiteAccess.Sum("jumlah", "cash", "arrow = 'peng'");
+
+        if(data.getCount() == 0){
+            textPengeluaran.setText("Rp. 0");
+        } else {
+            while(data.moveToNext()){
+                if(data.getString(0) != null) {
+                    textPengeluaran.setText("Rp. " + data.getString(0));
+                } else {
+                    textPengeluaran.setText("Rp. 0");
+                }
+            }
+        }
+    }
+
+    //keluar aplikasi
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        moveTaskToBack(true);
     }
 }
