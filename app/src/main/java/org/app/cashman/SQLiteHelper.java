@@ -6,7 +6,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 public class SQLiteHelper extends SQLiteAssetHelper {
 
-    public static final String DATABASE_NAME = "cashman.db"; //database name
+    public static final String DATABASE_NAME = "cashman.db";
     public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_LOCATION = "/data/data/" + G.context.getPackageName() + "/databases";
 
