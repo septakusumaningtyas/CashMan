@@ -59,7 +59,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewTgl"
+                android:id="@+id/textViewTglPeng"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -69,7 +69,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextTgl"
+                android:id="@+id/editTextTglPeng"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/background_input"
@@ -94,7 +94,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewNominal"
+                android:id="@+id/textViewNominalPeng"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -104,7 +104,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextNominal"
+                android:id="@+id/editTextNominalPeng"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/background_input"
@@ -125,7 +125,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewKet"
+                android:id="@+id/textViewKetPeng"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -135,7 +135,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextKet"
+                android:id="@+id/editTextKetPeng"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/background_input"

@@ -80,7 +80,7 @@ public class SQLiteAccess {
         return result != -1;
     }
 
-    public boolean insertMoney(Integer jumlah, String keterangan, String tgl, String arrow){
+    public boolean insertCash(Integer jumlah, String keterangan, String tgl, String arrow){
         ContentValues contentValues = new ContentValues();
         contentValues.put("jumlah", jumlah);
         contentValues.put("keterangan", keterangan);

@@ -15,15 +15,16 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class PengeluaranActivity extends AppCompatActivity {
 
-    TextView textViewTgl;
-    EditText editTextTgl;
+    TextView textViewTglPeng;
+    EditText editTextTglPeng, editTextNominalPeng, editTextKetPeng;
     DatePickerDialog.OnDateSetListener setListener;
-    Button simpanButton, kembaliButton;
+    Button simpanButtonPeng, kembaliButtonPeng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +38,17 @@ public class PengeluaranActivity extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.brown));
         }
 
-        textViewTgl = findViewById(R.id.textViewTgl);
-        editTextTgl = findViewById(R.id.editTextTgl);
+        textViewTglPeng = findViewById(R.id.textViewTglPeng);
+        editTextTglPeng = findViewById(R.id.editTextTglPeng);
+        editTextNominalPeng = findViewById(R.id.editTextNominalPeng);
+        editTextKetPeng = findViewById(R.id.editTextKetPeng);
 
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        textViewTgl.setOnClickListener(new View.OnClickListener() {
+        textViewTglPeng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(PengeluaranActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
@@ -59,42 +62,62 @@ public class PengeluaranActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
                 month = month + 1;
-                String date = day + "/" + month + "/" + year;
-                textViewTgl.setText(date);
+                String date = day + "-" + month + "-" + year;
+                textViewTglPeng.setText(date);
             }
         };
 
-        editTextTgl.setOnClickListener(new View.OnClickListener() {
+        editTextTglPeng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(PengeluaranActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         month = month + 1;
-                        String date = day + "/" + month + "/" + year;
-                        editTextTgl.setText(date);
+                        String date = day + "-" + month + "-" + year;
+                        editTextTglPeng.setText(date);
                     }
                 }, year, month, day);
                 datePickerDialog.show();
             }
         });
 
-        simpanButton = findViewById(R.id.btnSimpanPeng);
-        simpanButton.setOnClickListener(new View.OnClickListener() {
+        simpanButtonPeng = findViewById(R.id.btnSimpanPeng);
+        simpanButtonPeng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PengeluaranActivity.this, PemasukanActivity.class);
-                startActivity(intent);
+                if(editTextNominalPeng.getText().toString().equals("") || editTextKetPeng.getText().toString().equals("") || editTextTglPeng.getText().toString().equals("")){
+                    Toast.makeText(PengeluaranActivity.this, "Harap lengkapi data pengeluaran", Toast.LENGTH_SHORT).show();
+                } else {
+                    Integer jmlh = Integer.valueOf(editTextNominalPeng.getText().toString());
+                    SQLiteAccess sqLiteAccess = SQLiteAccess.getInstance(PengeluaranActivity.this);
+                    sqLiteAccess.open();
+
+                    boolean isInserted = sqLiteAccess.insertCash(jmlh, editTextKetPeng.getText().toString(), editTextTglPeng.getText().toString(), "arrowPeng");
+
+                    if(isInserted){
+                        Toast.makeText(PengeluaranActivity.this, "Berhasil menambah data pengeluaran", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(PengeluaranActivity.this, HomeActivity.class));
+                    } else {
+                        Toast.makeText(PengeluaranActivity.this, "Gagal menambah data pengeluaran", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
-        kembaliButton = findViewById(R.id.btnKembaliPeng);
-        kembaliButton.setOnClickListener(new View.OnClickListener() {
+        kembaliButtonPeng = findViewById(R.id.btnKembaliPeng);
+        kembaliButtonPeng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PengeluaranActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(PengeluaranActivity.this, HomeActivity.class));
     }
 }

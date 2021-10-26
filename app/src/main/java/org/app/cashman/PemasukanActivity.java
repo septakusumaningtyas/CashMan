@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,7 +24,7 @@ import java.util.Locale;
 public class PemasukanActivity extends AppCompatActivity {
 
     TextView textViewTgl;
-    EditText editTextTgl;
+    EditText editTextTgl, editTextNominal, editTextKet;
     DatePickerDialog.OnDateSetListener setListener;
     Button simpanButton, kembaliButton;
 
@@ -41,6 +42,8 @@ public class PemasukanActivity extends AppCompatActivity {
 
         textViewTgl = findViewById(R.id.textViewTgl);
         editTextTgl = findViewById(R.id.editTextTgl);
+        editTextNominal = findViewById(R.id.editTextNominal);
+        editTextKet = findViewById(R.id.editTextKet);
 
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
@@ -85,8 +88,22 @@ public class PemasukanActivity extends AppCompatActivity {
         simpanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PemasukanActivity.this, PemasukanActivity.class);
-                startActivity(intent);
+                if(editTextNominal.getText().toString().equals("") || editTextKet.getText().toString().equals("") || editTextTgl.getText().toString().equals("")){
+                    Toast.makeText(PemasukanActivity.this, "Harap lengkapi data pemasukan", Toast.LENGTH_SHORT).show();
+                } else {
+                    Integer jmlh = Integer.valueOf(editTextNominal.getText().toString());
+                    SQLiteAccess sqLiteAccess = SQLiteAccess.getInstance(PemasukanActivity.this);
+                    sqLiteAccess.open();
+
+                    boolean isInserted = sqLiteAccess.insertCash(jmlh, editTextKet.getText().toString(), editTextTgl.getText().toString(), "arrowPem");
+
+                    if(isInserted){
+                        Toast.makeText(PemasukanActivity.this, "Berhasil menambah data pemasukan", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(PemasukanActivity.this, HomeActivity.class));
+                    } else {
+                        Toast.makeText(PemasukanActivity.this, "Gagal menambah data pemasukan", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
@@ -98,5 +115,11 @@ public class PemasukanActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(PemasukanActivity.this, HomeActivity.class));
     }
 }

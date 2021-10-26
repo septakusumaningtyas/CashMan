@@ -13,13 +13,13 @@ import androidx.annotation.NonNull;
 
 public class AdapterCash extends ArrayAdapter {
     Integer[] Nominal;
-    String[] Keterangan, Tanggal, Arrow;
+    String[] Keterangan, Tgl, Arrow;
 
-    public AdapterCash(@NonNull Context context, Integer[] Nominal, String[] Keterangan, String[] Tanggal, String[] Arrow){
-        super(context, R.layout.item_cash, R.id.tanggal, Tanggal);
+    public AdapterCash(@NonNull Context context, Integer[] Nominal, String[] Keterangan, String[] Tgl, String[] Arrow){
+        super(context, R.layout.item_cash, R.id.tanggal, Tgl);
         this.Nominal = Nominal;
         this.Keterangan = Keterangan;
-        this.Tanggal = Tanggal;
+        this.Tgl = Tgl;
         this.Arrow = Arrow;
     }
 
@@ -35,8 +35,8 @@ public class AdapterCash extends ArrayAdapter {
         ImageView peng = row.findViewById(R.id.arrowPeng);
 
         tvKeterangan.setText(Keterangan[position]);
-        tvTanggal.setText(Tanggal[position]);
-        if(Arrow[position].equals("income")){
+        tvTanggal.setText(Tgl[position]);
+        if(Arrow[position].equals("arrowPem")){
             tvNominal.setText("[+] Rp. " + Nominal[position]);
             pem.setVisibility(View.VISIBLE);
             peng.setVisibility(View.GONE);

@@ -32,6 +32,9 @@ public class HomeActivity extends AppCompatActivity {
         textPemasukan = findViewById(R.id.textPemasukan);
         textPengeluaran = findViewById(R.id.textPengeluaran);
 
+        getJmlhPemasukan();
+        getJmlhPengeluaran();
+
         ImgButtonPem = findViewById(R.id.imageBtnPem);
         ImgButtonPem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +76,7 @@ public class HomeActivity extends AppCompatActivity {
         SQLiteAccess sqLiteAccess = SQLiteAccess.getInstance(HomeActivity.this);
         sqLiteAccess.open();
 
-        Cursor data = sqLiteAccess.Sum("jumlah", "cash", "arrow = 'pem'");
+        Cursor data = sqLiteAccess.Sum("jumlah", "cash", "arrow = 'arrowPem'");
 
         if(data.getCount() == 0){
             textPemasukan.setText("Rp. 0");
@@ -92,7 +95,7 @@ public class HomeActivity extends AppCompatActivity {
         SQLiteAccess sqLiteAccess = SQLiteAccess.getInstance(HomeActivity.this);
         sqLiteAccess.open();
 
-        Cursor data = sqLiteAccess.Sum("jumlah", "cash", "arrow = 'peng'");
+        Cursor data = sqLiteAccess.Sum("jumlah", "cash", "arrow = 'arrowPeng'");
 
         if(data.getCount() == 0){
             textPengeluaran.setText("Rp. 0");

@@ -36,18 +36,20 @@
             android:background="#FFBD5B" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
         android:id="@+id/detailCashFlow"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-40dp"
+        android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnKembaliDetail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-    </androidx.recyclerview.widget.RecyclerView>
+    </ListView>
 
     <Button
         android:id="@+id/btnKembaliDetail"
